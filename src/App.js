@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.sass';
+import SelectLang from './Components/Lang';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Movie Search React Appt</h1>
+          <SelectLang />
         </header>
       </div>
     );
