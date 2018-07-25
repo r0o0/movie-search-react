@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.sass';
 import SelectLang from './Components/Lang';
+import SearchBar from './Components/Search';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
           <h1 className="App-title">Movie Search React Appt</h1>
           <SelectLang />
         </header>
+        <SearchBar />
       </div>
     );
   }
