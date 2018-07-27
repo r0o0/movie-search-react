@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import IconSearch from '../Assets/Icons/iconSearch';
+import './CSS/SearchForm.sass';
 
 const contents = {
   en: {
@@ -37,8 +38,8 @@ class SearchForm extends Component {
 
     return (
       <form id="form-search"> 
-        <input type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name}/> 
-        <button type="button" id="send">
+        <input className="input-search" type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name}/> 
+        <button className="btn-search" type="button" id="send">
           <span className="a11y-hidden">{content.button}</span>
           <IconSearch />
         </button>
