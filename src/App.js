@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.sass';
 import { el } from './Assets/Helpers';
 import SelectLang from './Components/Lang';
-import SearchBar from './Components/Search';
+import MovieSearch from './Components/Search';
 
 class App extends Component {
   constructor(props) {
@@ -19,14 +19,7 @@ class App extends Component {
       lang: newLang
     });
   }
-  componentDidMount() {
-    const key = process.env.REACT_APP_TMDb_API_KEY;
-
-    // get image url from TMDb API
-    fetch(`//api.themoviedb.org/3/configuration?api_key=${key}`)
-    .then(res => res.json())
-    .then(data => console.log(data));
-  }
+  
   render() {
     return (
       <div className="App">
@@ -35,7 +28,7 @@ class App extends Component {
           <h1 className="App-title">Movie Search React Appt</h1>
           <SelectLang onChange={this.changeLang} />
         </header>
-        <SearchBar lang={this.state.lang} />
+        <MovieSearch lang={this.state.lang} />
       </div>
     );
   }
