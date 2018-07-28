@@ -4,12 +4,13 @@ import './App.sass';
 import { el } from './Assets/Helpers';
 import SelectLang from './Components/Lang';
 import MovieSearch from './Components/Search';
+import NowPlaying from './Components/NowPlaying';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lang : el('html').getAttribute('lang')
+      lang: el('html').getAttribute('lang')
     };
     this.changeLang = this.changeLang.bind(this);
     console.log('app', this.changeLang, this.state);
@@ -21,6 +22,7 @@ class App extends Component {
   }
   
   render() {
+    console.log('in render', this.state.lang);
     return (
       <div className="App">
         <header className="App-header">
@@ -29,6 +31,7 @@ class App extends Component {
           <SelectLang onChange={this.changeLang} />
         </header>
         <MovieSearch lang={this.state.lang} />
+        <NowPlaying />
       </div>
     );
   }
