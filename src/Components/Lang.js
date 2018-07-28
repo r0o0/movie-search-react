@@ -20,9 +20,9 @@ class SelectLang extends Component {
     return (
       <label htmlFor="lang-select">Choose a language:
         <select id="lang-select" onChange={this.handleChange}>
-          <option value="en">English</option>
+          <option value="en-US">English</option>
           <option value="ko-KR">한국어</option>
-          <option value="fr">Français</option>
+          <option value="fr-FR">Français</option>
         </select>
       </label>
     );
