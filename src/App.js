@@ -12,17 +12,14 @@ class App extends Component {
     this.state = {
       lang: el('html').getAttribute('lang')
     };
-    this.changeLang = this.changeLang.bind(this);
-    console.log('app', this.changeLang, this.state);
+    this.changeLang = this._changeLang.bind(this);
   }
-  changeLang(newLang) {
+  _changeLang(newLang) {
     this.setState({
       lang: newLang
     });
   }
-  
   render() {
-    console.log('in render', this.state.lang);
     return (
       <div className="App">
         <header className="App-header">
@@ -31,7 +28,7 @@ class App extends Component {
           <SelectLang onChange={this.changeLang} />
         </header>
         <MovieSearch lang={this.state.lang} />
-        <NowPlaying />
+        <NowPlaying lang={this.state.lang}/>
       </div>
     );
   }
