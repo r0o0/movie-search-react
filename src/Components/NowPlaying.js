@@ -1,32 +1,64 @@
-import React, {Component} from 'react';
-import {el} from '../Assets/Helpers';
+import React, { Component } from 'react';
 import api from '../Assets/API';
 import MovieList from './MovieList';
 
 class NowPlaying extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+  state = {
+      lang: this.props.lang
   }
   componentDidMount() {
-    const curr_lang = el('html').getAttribute('lang');
-    const curr_region = curr_lang.substr(3, 4);
-    const settings = `${api.language}${curr_lang}&${api.page}1&${api.region}${curr_region}`;
-
+    // call api with default language settings
+    const settings = this._changeLang(this.state.lang);
+    this._requestList(settings);
+  }
+  componentDidUpdate(prevState) {
+    // check if the language has changed then
+    // if the changed language is different from the previous one
+    // change this components language and request another api call
+    if (prevState.lang !== this.props.lang) {
+      this.setState({
+        lang: this.props.lang
+      });
+      const settings = this._changeLang(this.props.lang);
+      this._requestList(settings);
+    }
+  }
+  _changeLang(lang) {
+    // get current language & region
+    const region = lang.substr(3, 4)
+    // set settings of api
+    const settings = `${api.language}${lang}&${api.page}1&${api.region}${region}`;
+    return settings;
+  }
+  _requestList(settings) {
+    // request top 10 now playing movie list from TMDb api
     fetch(`${api.tmdbURL}/movie/${api.nowPlaying}&${settings}`)
     .then(res => res.json())
     .then(data => {
+      const topTen = [];
+      for (let i=0, l=10; i < l; i++) {
+        topTen.push(data.results[i]);
+      }
+      console.log('10', topTen);
       this.setState({
-        movies: data.results
+        movies: topTen
       });
     });
   }
   _getList() {
+    // get movie list
     const movie = [];
-    
     for (let list in this.state.movies) {
-      const movieList = this.state.movies[list];
-      movie.push(<MovieList title={movieList.title} key={list} />);
+      const mv = this.state.movies[list];
+      movie.push(
+        <MovieList
+          title={mv.title}
+          poster={mv.poster_path}
+          vote={mv.vote_average}
+          released={mv.release_date}
+          adult={mv.adult} key={list}
+        />
+      );
     }
     return movie;
   }
