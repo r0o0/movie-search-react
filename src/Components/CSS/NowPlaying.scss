@@ -2,8 +2,13 @@
 
 .mv-now-playing {
   @include display-flex;
-  @include flex-flow($direction: row, $wrap: wrap);
+  @include flex-flow($direction: row, $wrap: nowrap);
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 16px;
+  background: #eee;
+  overflow-x: scroll;
+  @media screen and (min-width: 768px) {
+    @include flex-wrap-wrap;
+  }
 }
