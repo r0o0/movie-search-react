@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../Assets/API';
 // component style
-import './CSS/MovieList.sass';
+import './CSS/MovieList.scss';
 
 class MovieList extends Component {
   _releaseDate() {
@@ -46,7 +46,12 @@ class MovieList extends Component {
     const isDefault = api.imgURL + api.p_default + this.props.poster;
     return (
       <li className="mv-list">
+        <h2 className="mv-top-num"><span className="a11y-hidden">Top</span>{this.props.topN}</h2>
         <h3 className="mv-title">{this.props.title}</h3>
+        <p className="mv-rating"> 
+          <span className="a11y-hidden">Average rating is</span>
+          {this.props.vote}
+        </p>
         <figure className="mv-poster">
           <picture>
             <source media="(max-width: 768px)" srcSet={isRetina} />
@@ -56,7 +61,6 @@ class MovieList extends Component {
         <p className="mv-release">Released 
           <time className="mv-release-date" dateTime={this.props.released}>{ this._releaseDate() }</time>
         </p>
-        <p className="mv-rating"><span className="a11y-hidden">Average rating is</span>{this.props.vote}</p>
       </li>
     );
   }

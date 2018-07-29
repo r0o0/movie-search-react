@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../Assets/API';
 import MovieList from './MovieList';
+import './CSS/NowPlaying.scss';
 
 class NowPlaying extends Component {
   state = {
@@ -50,21 +51,13 @@ class NowPlaying extends Component {
     const movie = [];
     for (let list in this.state.movies) {
       const mv = this.state.movies[list];
-      movie.push(
-        <MovieList
-          title={mv.title}
-          poster={mv.poster_path}
-          vote={mv.vote_average}
-          released={mv.release_date}
-          adult={mv.adult} key={list}
-        />
-      );
+      movie.push(<MovieList topN={+list + 1} title={mv.title} poster={mv.poster_path} vote={mv.vote_average} released={mv.release_date} adult={mv.adult} key={list} />);
     }
     return movie;
   }
   render() {
     return (
-      <ul className="movies-playing-now">
+      <ul className="mv-now-playing">
         {this._getList()}
       </ul>
     );

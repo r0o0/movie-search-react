@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import IconSearch from '../Assets/Icons/iconSearch';
-import './CSS/SearchForm.sass';
+import './CSS/SearchForm.scss';
 
 const contents = {
   en: {
