@@ -1,0 +1,81 @@
+@import '../../../node_modules/sass-flexbox';
+
+.mv-list {
+  @include display-flex;
+  @include flex-direction-column;
+  position: relative;
+  width: 200px + 40px;
+  height: 100%;
+  margin: 20px;
+  margin-bottom: 40px;
+  // background-color: #eee;
+
+  .mv-top-num {
+    @include order($order: 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    background: #000;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    line-height: 34px;
+  }
+
+  .mv-title {
+    @include order($order: 3);
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.2em;
+    color: #444;
+  }
+
+  .mv-rating {
+    @include order($order: 2);
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ccc;
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 34px;
+  }
+
+  .mv-poster {
+    @include order($order: 1);
+    margin: (34px / 2);
+    width: 100%;
+    height: 300px;
+    picture {
+      display: block;
+      width: 200px;
+      height: 300px;
+    }
+      img {
+        width: 200px;
+        height: 300px;
+      }
+  }
+
+  .mv-release {
+    @include order($order: 4);
+    font-size: 1.5rem;
+    color: #4e4e4e;
+    .mv-release-date {
+      display: block;
+      margin-top: 4px;
+      padding-left: 6px;
+      font-weight: bold;
+      color: #6e6e6e;
+    }
+  }
+}

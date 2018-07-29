@@ -1,0 +1,9 @@
+@import '../../../node_modules/sass-flexbox';
+
+.mv-now-playing {
+  @include display-flex;
+  @include flex-flow($direction: row, $wrap: wrap);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
