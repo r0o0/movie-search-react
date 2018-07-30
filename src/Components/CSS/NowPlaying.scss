@@ -8,7 +8,4 @@
   padding: 0 16px;
   background: #eee;
   overflow-x: scroll;
-  @media screen and (min-width: 768px) {
-    @include flex-wrap-wrap;
-  }
 }
