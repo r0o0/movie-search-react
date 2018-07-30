@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { el } from './Assets/Helpers';
-import './App.scss';
 import Header from './Components/Header';
 import MovieListSection from './Components/Movies';
 import Footer from './Components/Footer';
