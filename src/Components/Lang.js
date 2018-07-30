@@ -18,13 +18,15 @@ class SelectLang extends Component {
 
   render() {
     return (
-      <label htmlFor="lang-select">Choose a language:
-        <select id="lang-select" onChange={this.handleChange}>
-          <option value="en-US">English</option>
-          <option value="ko-KR">한국어</option>
-          <option value="fr-FR">Français</option>
-        </select>
-      </label>
+      <div className="change-country">
+        <label htmlFor="select-country">Choose a country:
+          <select id="select-country" onChange={this.handleChange}>
+            <option value="en-US">U.S</option>
+            <option value="ko-KR">한국</option>
+            <option value="fr-FR">France</option>
+          </select>
+        </label>
+      </div>
     );
   }
 }
