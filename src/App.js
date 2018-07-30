@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { el } from './Assets/Helpers';
 import './App.scss';
-import SelectLang from './Components/Lang';
-import MovieSearch from './Components/Search';
+import Header from './Components/Header';
+import MovieListSection from './Components/Movies';
+import Footer from './Components/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -20,11 +21,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title a11y-hidden">Movie Search React Appt</h1>
-          <SelectLang onChange={this.changeLang} />
-        </header>
-        <MovieSearch lang={this.state.lang} />
+        <Header lang={this.state.lang}/>
+        <MovieListSection lang={this.state.lang} />
+        <Footer />
       </div>
     );
   }
