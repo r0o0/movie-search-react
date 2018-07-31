@@ -24,6 +24,14 @@ const contents = {
 };
 
 class SearchForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onFormSubmit = this._onFormSubmit.bind(this);
+  }
+  _onFormSubmit(e) {
+    e.preventDefault();
+  }
   render() {
     // Get current language
     const curr_lang = this.props.lang.substr(0, 2);
@@ -37,7 +45,7 @@ class SearchForm extends Component {
     });
 
     return (
-      <form id="form-search"> 
+      <form id="form-search" onSubmit={this.onFormSubmit}> 
         <input className="input-search" type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name}/> 
         <button className="btn-search" type="button" id="send">
           <span className="a11y-hidden">{content.button}</span>
