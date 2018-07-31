@@ -23,6 +23,7 @@ class Header extends Component {
     this.setState({
       keyword: value
     });
+    this.props.onSubmit(value);
   }
   render () {
     console.log('in HEADER', this.state);

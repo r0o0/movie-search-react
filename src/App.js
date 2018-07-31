@@ -10,16 +10,23 @@ class App extends Component {
     this.state = {
       lang: el('html').getAttribute('lang')
     };
+
     this.getLang = this._getLang.bind(this);
+    this.getKeyword = this._getKeyword.bind(this);
   }
   _getLang(newLang) {
     this.setState({ lang: newLang });
   }
+  _getKeyword(value) {
+    // const newState = { lang: this.state.lang, keyword: value }; this.setState({
+    // newState });
+    this.setState({keyword: value});
+  }
   render() {
-    console.log('lang in app', this.state.lang)
+    console.log('in APP', this.state)
     return (
       <div className="App">
-        <Header onChange={this.getLang}/>
+        <Header onChange={this.getLang} onSubmit={this.getKeyword} />
         <MovieListSection lang={this.state.lang} />
         <Footer />
       </div>
