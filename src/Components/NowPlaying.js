@@ -29,6 +29,7 @@ class NowPlaying extends Component {
     const region = lang.substr(3, 4)
     // set settings of api
     const settings = `${api.language}${lang}&${api.page}1&${api.region}${region}`;
+    console.log(settings);
     return settings;
   }
   _requestList(settings) {
@@ -50,6 +51,7 @@ class NowPlaying extends Component {
     // get movie list
     const movie = [];
     for (let list in this.state.movies) {
+      console.log(this.state.movies[list]);
       const mv = this.state.movies[list];
       movie.push(<MovieList topN={+list + 1} title={mv.title} poster={mv.poster_path} vote={mv.vote_average} released={mv.release_date} adult={mv.adult} key={list} />);
     }

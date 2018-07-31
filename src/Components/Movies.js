@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import NowPlaying from './NowPlaying';
 
-
-class MovieSearch extends Component {
-  componentDidMount() {
-  }
+class Movies extends Component {
   render() {
   return (
     <main>
@@ -14,4 +11,4 @@ class MovieSearch extends Component {
   }
 }
 
-export default MovieSearch;
+export default Movies;

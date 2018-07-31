@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { el } from '../Assets/Helpers';
 import IconSearch from '../Assets/Icons/iconSearch';
 import './CSS/SearchForm.scss';
 
@@ -27,10 +28,18 @@ class SearchForm extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {};
+
     this.onFormSubmit = this._onFormSubmit.bind(this);
   }
   _onFormSubmit(e) {
+    // prevent form default action
     e.preventDefault();
+
+    // get input value
+    const search_val = el('#mvs').value;
+    this.setState({ keyword: search_val }); 
+    console.log(search_val);
   }
   render() {
     // Get current language

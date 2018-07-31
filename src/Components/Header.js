@@ -4,7 +4,6 @@ import './CSS/Header.scss';
 import SelectCountry from './Lang';
 import SearchBar from './SearchForm';
 
-
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +21,7 @@ class Header extends Component {
       <header className="header">
         <h1 className="app-title">Movie Search</h1>
         <SelectCountry onChange={this.changeLang} />
-        <SearchBar className="mv-search" lang={this.state.lang}/>
+        <SearchBar lang={this.state.lang} />
       </header>
     );    
   }
