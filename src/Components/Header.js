@@ -11,17 +11,26 @@ class Header extends Component {
       lang: el('html').getAttribute('lang')
     };
     this.changeLang = this._changeLang.bind(this);
+    this.getKeyword = this._getKeyword.bind(this);
   }
   _changeLang(newLang) {
     this.setState({ lang: newLang });
     this.props.onChange(newLang);
   }
+  _getKeyword(value) {
+    // const newState = { lang: this.state.lang, keyword: value };
+    // this.setState({ newState });
+    this.setState({
+      keyword: value
+    });
+  }
   render () {
+    console.log('in HEADER', this.state);
     return (
       <header className="header">
         <h1 className="app-title">Movie Search</h1>
         <SelectCountry onChange={this.changeLang} />
-        <SearchBar lang={this.state.lang} />
+        <SearchBar lang={this.state.lang} onSubmit={this.getKeyword} />
       </header>
     );    
   }
