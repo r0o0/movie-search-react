@@ -10,17 +10,16 @@ class App extends Component {
     this.state = {
       lang: el('html').getAttribute('lang')
     };
-    this.changeLang = this._changeLang.bind(this);
+    this.getLang = this._getLang.bind(this);
   }
-  _changeLang(newLang) {
-    this.setState({
-      lang: newLang
-    });
+  _getLang(newLang) {
+    this.setState({ lang: newLang });
   }
   render() {
+    console.log('lang in app', this.state.lang)
     return (
       <div className="App">
-        <Header lang={this.state.lang}/>
+        <Header onChange={this.getLang}/>
         <MovieListSection lang={this.state.lang} />
         <Footer />
       </div>
