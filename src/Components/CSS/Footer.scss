@@ -1,0 +1,27 @@
+$height: 40px;
+
+.footer {
+  width: 100%;
+  height: $height;
+  padding: 0 16px;
+  font-size: 1.4rem;
+  color: #777;
+  line-height: $height;
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  .tmdb-mention {
+    float: right;
+    .tmdb-url {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+
+  .copyright {
+    float: left;
+  }
+}
