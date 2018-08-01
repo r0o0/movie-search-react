@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { el } from './Assets/Helpers';
 import Header from './Components/Header';
-import MovieListSection from './Components/Movies';
+import MovieListSection from './Components/MovieList';
 import Footer from './Components/Footer';
 
 class App extends Component {
