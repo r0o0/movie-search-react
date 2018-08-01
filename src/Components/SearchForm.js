@@ -40,6 +40,13 @@ class SearchForm extends Component {
     const search_val = el('#mvs').value;
     this.setState({ keyword: search_val }); 
     this.props.onSubmit(search_val);
+
+    // clear input value
+    this._initInput();
+  }
+  _initInput() {
+    el('#mvs').value = '';
+    el('#mvs').blur();
   }
   render() {
     // Get current language
