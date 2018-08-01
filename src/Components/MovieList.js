@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import api from '../Assets/API';
 import Movies from './Movies';
 import { addClass, removeClass } from '../Assets/Helpers';
+import './CSS/MovieList.scss';
 
 class MovieList extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class MovieList extends Component {
     console.log('in MovieList render', this.state);
   return (
     <main>
-      <h3 className="search-title">{this.state.total_results} search results for {this.props.keyword}</h3>
+      <h3 className="search-title"><span className="search-result">{this.state.total_results}</span> search results for <span className="search-keyword">{this.props.keyword}</span></h3>
       <Movies lang={this.props.lang} keyword={this.props.keyword} />
     </main>
   );

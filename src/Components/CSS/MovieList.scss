@@ -1,0 +1,16 @@
+main {
+  width: 100%;
+  min-height: calc(100vh - 124px - 40px);
+  padding: 40px 16px 16px;
+  background: #eeeef0;
+
+  .search-title {
+    margin-bottom: 32px;
+    font-size: 22px;
+    color: #444;
+
+    .search-keyword {
+      color: #6746ca;
+    }
+  }
+}

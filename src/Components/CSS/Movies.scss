@@ -5,6 +5,5 @@
   @include flex-flow($direction: row, $wrap: wrap);
   width: 100%;
   margin: 0;
-  padding: 0 16px;
-  background: #eee;
+  padding-left: 8px;
 }
