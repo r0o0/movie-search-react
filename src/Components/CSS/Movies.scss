@@ -7,11 +7,4 @@
   margin: 0;
   padding: 0 16px;
   background: #eee;
-  overflow-x: scroll;
-
-  /* hide scroll bars */
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }

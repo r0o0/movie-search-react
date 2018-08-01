@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../Assets/API';
 import Movie from './Movie';
-import './CSS/NowPlaying.scss';
+import './CSS/Movies.scss';
 
 class Movies extends Component {
   state = {
