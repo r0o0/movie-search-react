@@ -27,7 +27,7 @@ class App extends Component {
       <div className="App">
         <Header onChange={this.getLang} onSubmit={this.getKeyword} />
         <MovieListSection lang={this.state.lang} keyword={this.state.keyword} />
-        <Footer />
+        <Footer lang={this.state.lang}/>
       </div>
     );
   }
