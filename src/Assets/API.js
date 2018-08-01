@@ -13,6 +13,7 @@ fetch(`//api.themoviedb.org/3/configuration?api_key=${key}`)
   });
 
 const tmdb = {
+  tmdb : 'https://www.themoviedb.org/?',
   tmdbURL: 'https://api.themoviedb.org/3',
   configuration: `configuration?api_key=${key}`,
   nowPlaying: `movie/now_playing?api_key=${key}`,
