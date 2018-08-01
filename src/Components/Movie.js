@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../Assets/API';
 // component style
-import './CSS/MovieList.scss';
+import './CSS/Movie.scss';
 
 class Movie extends Component {
   _releaseDate() {
