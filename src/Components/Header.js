@@ -26,7 +26,6 @@ class Header extends Component {
     this.props.onSubmit(value);
   }
   render () {
-    console.log('in HEADER', this.state);
     return (
       <header className="header">
         <h1 className="app-title">Movie Search</h1>

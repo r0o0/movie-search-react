@@ -23,7 +23,6 @@ class App extends Component {
     this.setState({keyword: value});
   }
   render() {
-    console.log('in APP', this.state)
     return (
       <div className="App">
         <Header onChange={this.getLang} onSubmit={this.getKeyword} />
