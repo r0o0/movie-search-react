@@ -18,8 +18,6 @@ class Header extends Component {
     this.props.onChange(newLang);
   }
   _getKeyword(value) {
-    // const newState = { lang: this.state.lang, keyword: value };
-    // this.setState({ newState });
     this.setState({
       keyword: value
     });
