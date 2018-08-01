@@ -7,9 +7,9 @@ function Footer(setting) {
   const tmdbHomepage = `${api.tmdb}${api.language}${setting.lang}`;
 
   return (
-    <footer>
-      <small>&copy; r0o0</small>
-        <p>Powered By <a href={tmdbHomepage} target="_blank" rel="noopener noreferrer">TMDb</a></p>
+    <footer className="footer">
+      <small className="copyright">&copy; r0o0</small>
+        <p className="tmdb-mention">Powered By <a className="tmdb-url" href={tmdbHomepage} target="_blank" rel="noopener noreferrer">TMDb</a></p>
     </footer>
   );
 }
