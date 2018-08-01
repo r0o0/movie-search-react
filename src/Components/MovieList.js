@@ -1,10 +1,48 @@
 import React, { Component } from 'react';
+import api from '../Assets/API';
 import Movies from './Movies';
+import { addClass, removeClass } from '../Assets/Helpers';
 
 class MovieList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+  componentDidMount() {
+    this._init();
+  }
+  componentDidUpdate(prevState) {
+    this._init();
+    if (this.props.keyword !== undefined && prevState.keyword !== this.props.keyword) {
+      this._getTotalResult(this.props.lang, this.props.keyword);
+    }
+  }
+  _getTotalResult(lang, keyword) {
+    const settings = `${api.language}${lang}&${api.query}${keyword}&${api.page}1`;
+    const url = `${api.tmdbURL}/${api.movieSearch}&${settings}`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          total_results: data.total_results
+        })
+      });
+  }
+  _init() {
+    if (this.props.keyword === undefined) {
+      addClass('.search-title', 'hide');
+    } else {
+      removeClass('.search-title', 'hide');
+    }
+  }
   render() {
+    console.log('in MovieList render', this.state);
   return (
     <main>
+      <h3 className="search-title">{this.state.total_results} search results for {this.props.keyword}</h3>
       <Movies lang={this.props.lang} keyword={this.props.keyword} />
     </main>
   );
