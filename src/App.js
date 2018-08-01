@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header onChange={this.getLang} onSubmit={this.getKeyword} />
-        <MovieListSection lang={this.state.lang} />
+        <MovieListSection lang={this.state.lang} keyword={this.state.keyword} />
         <Footer />
       </div>
     );
