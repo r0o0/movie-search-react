@@ -15,10 +15,12 @@ fetch(`//api.themoviedb.org/3/configuration?api_key=${key}`)
 const tmdb = {
   tmdbURL: 'https://api.themoviedb.org/3',
   configuration: `configuration?api_key=${key}`,
-  nowPlaying: `now_playing?api_key=${key}`,
+  nowPlaying: `movie/now_playing?api_key=${key}`,
+  movieSearch : `search/movie?api_key=${key}`,
   language: 'language=',
   page: 'page=',
-  region: 'region='
+  region: 'region=',
+  query: 'query='
 };
 
 console.log('tmdb api urls', tmdb);
