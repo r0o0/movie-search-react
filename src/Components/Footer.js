@@ -9,7 +9,7 @@ function Footer(setting) {
   return (
     <footer className="footer">
       <p className="tmdb-mention">Powered By <a className="tmdb-url" href={tmdbHomepage} target="_blank" rel="noopener noreferrer">TMDb</a></p>
-      <small className="copyright">&copy; r0o0</small>
+      <small className="copyright">2018 &copy; r0o0</small>
     </footer>
   );
 }
