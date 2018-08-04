@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import api from '../Assets/API';
 import Movie from './Movie';
+import Loader from './Loader';
 import './CSS/Movies.scss';
+import {addClass, removeClass} from '../Assets/Helpers';
 
 class Movies extends Component {
   state = {
       lang: this.props.lang
   }
   componentDidMount() {
+    this._triggerLoader();
+    // this._removeLoader();
     // call api with default language settings
     const settings = this._changeLang(this.state.lang);
     this._requestList('nowplaying', settings);
@@ -17,6 +21,7 @@ class Movies extends Component {
     // if the changed language is different from previous one
     // change component's language and request another api call
     if (prevState.lang !== this.props.lang) {
+      this._triggerLoader();
       this.setState({
         lang: this.props.lang
       });
@@ -31,16 +36,24 @@ class Movies extends Component {
         this._requestList('search', settings);
       }
     }
-
     // if there is a keyword and the keyword is different from previous one
     // request another api call
     if (this.props.keyword !== undefined && prevState.keyword !== this.props.keyword) {
+      this._triggerLoader();
       this.setState({
         keyword: this.props.keyword
       });
       const settings = this._getSearchResult(this.props.lang, this.props.keyword);
       this._requestList('search', settings);
     }
+  }
+  _triggerLoader() {
+    removeClass('.loader', 'hide');
+    addClass('.mv-list-wrapper', 'hide');
+  }
+  _removeLoader() {
+    addClass('.loader', 'hide');
+    removeClass('.mv-list-wrapper', 'hide');
   }
   // change language and region settings
   _changeLang(lang) {
@@ -74,18 +87,18 @@ class Movies extends Component {
           this.setState({
             movies: topTen
           });
-        });
+        }).then( this._removeLoader);
     } else if (type === 'search') {
       // request search result of keyword from TMDb api
       url =  `${api.tmdbURL}/${api.movieSearch}&${settings}`;
 
       fetch(url)
       .then(res => res.json())
-      .then(data => this.setState({ movies: data.results }));
+      .then(data => this.setState({ movies: data.results }))
+      .then(this._removeLoader);
     } else {
       console.error('need to mention type');
     }
-    
   }
   _getList() {
     // get movie list
@@ -98,9 +111,14 @@ class Movies extends Component {
   }
   render() {
     return (
-      <ul className="mv-now-playing">
-        {this._getList()}
-      </ul>
+      <div className="mv-wrapper">
+        <div className="mv-list-wrapper">
+          <ul className="mv-list">
+            {this._getList()}
+          </ul>
+        </div>
+        <Loader />
+      </div>
     );
   }
 }
