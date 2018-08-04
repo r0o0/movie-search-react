@@ -15,6 +15,7 @@ class MovieList extends Component {
   }
   componentDidUpdate(prevState) {
     this._init();
+  
     if (this.props.keyword !== undefined && prevState.keyword !== this.props.keyword) {
       this._getTotalResult(this.props.lang, this.props.keyword);
     }
@@ -29,24 +30,22 @@ class MovieList extends Component {
         console.log(data);
         this.setState({
           total_results: data.total_results
-        })
-      });
+        })  
+      }).then(this._addSearchResult);
   }
   _init() {
-    if (this.props.keyword === undefined) {
-      addClass('.search-title', 'hide');
-    } else {
-      removeClass('.search-title', 'hide');
-    }
+    addClass('.search-title', 'hide');
+  }
+  _addSearchResult() {
+    removeClass('.search-title', 'hide');
   }
   render() {
-    console.log('in MovieList render', this.state);
-  return (
-    <main>
-      <h3 className="search-title"><span className="search-result">{this.state.total_results}</span> search results for <span className="search-keyword">{this.props.keyword}</span></h3>
-      <Movies lang={this.props.lang} keyword={this.props.keyword} />
-    </main>
-  );
+    return (
+      <main>
+        <h3 className="search-title"><span className="search-result">{this.state.total_results}</span> search results for <span className="search-keyword">{this.props.keyword}</span></h3>
+        <Movies lang={this.props.lang} keyword={this.props.keyword} />
+      </main>
+    );
   }
 }
 
