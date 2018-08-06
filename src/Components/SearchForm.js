@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { el } from '../Assets/Helpers';
+import { el, addClass, removeClass } from '../Assets/Helpers';
 import browser from 'browser-detect';
 import IconSearch from '../Assets/Icons/iconSearch';
 import './CSS/SearchForm.scss';
@@ -30,9 +30,10 @@ class SearchForm extends Component {
     super(props);
 
     this.state = {};
-
+     
     this.onFormSubmit = this._onFormSubmit.bind(this);
     this.accessibilty = this._accessibilty.bind(this);
+    this.ifIEorEdge = this._ifIEorEdge.bind(this);
   }
   _onFormSubmit(e) {
     // prevent form default action
@@ -52,14 +53,27 @@ class SearchForm extends Component {
   }
   _accessibilty(e) {
     // blur btn search if user press enter when button is focused
-    if (e.keyCode === 13 && e.target === el('.btn-search')) {      
+    if (e.keyCode === 13 && e.target === el('.btn-search')) {
       el('.btn-search').blur();
     }
     // reset input if user press the 'esc' key when input is focused
     if (e.target === el('.input-search')) {
       if (e.keyCode === 27) {
         this._initInput();
+        
+        // if browser is ie or edge remove focus style
+        const ifIEorEdge = el('#form-search').classList.value.indexOf('focus-within')
+        if (ifIEorEdge === 0 || ifIEorEdge === 5) {
+          removeClass('#form-search', 'focus-within');
+        }
       }
+    }
+  }
+  // if browser is ie or edge add focus style
+  _ifIEorEdge() {
+    const isBrowser = browser().name;
+    if (isBrowser === 'ie' || isBrowser === 'edge') {
+      addClass('#form-search', 'focus-within');
     }
   }
   render() {
@@ -76,7 +90,7 @@ class SearchForm extends Component {
 
     return (
       <form id="form-search" onSubmit={this.onFormSubmit} onKeyDown={this.accessibilty}> 
-        <input className="input-search" type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name}/> 
+        <input className="input-search" type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name} onFocus={this.ifIEorEdge}/> 
         <button className="btn-search" type="submit" id="send" onKeyDown={this.accessibilty} >
           <span className="a11y-hidden">{content.button}</span>
           <IconSearch />
