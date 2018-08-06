@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { el } from '../Assets/Helpers';
+import browser from 'browser-detect';
 import IconSearch from '../Assets/Icons/iconSearch';
 import './CSS/SearchForm.scss';
 
