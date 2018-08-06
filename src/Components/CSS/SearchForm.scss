@@ -12,5 +12,18 @@
     height: 48px;
     border: none;
     background: transparent;
+    svg {
+      fill: #ccc;
+    }
+    &:hover {
+      svg {
+        fill: #000;
+      }
+    }
+    &:focus {
+      svg {
+        fill: #000;
+      }
+    }
   }
 }

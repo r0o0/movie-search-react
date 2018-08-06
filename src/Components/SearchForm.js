@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { el } from '../Assets/Helpers';
+import { el, addClass, removeClass } from '../Assets/Helpers';
 import IconSearch from '../Assets/Icons/iconSearch';
 import './CSS/SearchForm.scss';
 
@@ -31,11 +31,12 @@ class SearchForm extends Component {
     this.state = {};
 
     this.onFormSubmit = this._onFormSubmit.bind(this);
+    this.accessibilty = this._accessibilty.bind(this);
   }
   _onFormSubmit(e) {
     // prevent form default action
     e.preventDefault();
-
+  
     // get input value
     const search_val = el('#mvs').value;
     this.setState({ keyword: search_val }); 
@@ -47,6 +48,18 @@ class SearchForm extends Component {
   _initInput() {
     el('#mvs').value = '';
     el('#mvs').blur();
+  }
+  _accessibilty(e) {
+    // blur btn search if user press enter when button is focused
+    if (e.keyCode === 13 && e.target === el('.btn-search')) {      
+      el('.btn-search').blur();
+    }
+    // reset input if user press the 'esc' key when input is focused
+    if (e.target === el('.input-search')) {
+      if (e.keyCode === 27) {
+        this._initInput();
+      }
+    }
   }
   render() {
     // Get current language
@@ -61,9 +74,9 @@ class SearchForm extends Component {
     });
 
     return (
-      <form id="form-search" onSubmit={this.onFormSubmit}> 
+      <form id="form-search" onSubmit={this.onFormSubmit} onKeyDown={this.accessibilty}> 
         <input className="input-search" type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name}/> 
-        <button className="btn-search" type="button" id="send">
+        <button className="btn-search" type="submit" id="send" onKeyDown={this.accessibilty} >
           <span className="a11y-hidden">{content.button}</span>
           <IconSearch />
         </button>
