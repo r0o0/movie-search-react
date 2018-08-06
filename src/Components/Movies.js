@@ -113,7 +113,7 @@ class Movies extends Component {
     return (
       <div className="mv-wrapper">
         <div className="mv-list-wrapper">
-          <ul className="mv-list">
+          <ul className="mv-lists">
             {this._getList()}
           </ul>
         </div>

@@ -1,6 +1,6 @@
 @import '../../../node_modules/sass-flexbox';
 
-.mv-now-playing {
+.mv-lists {
   @include display-flex;
   @include flex-flow($direction: row, $wrap: wrap);
   width: 100%;
