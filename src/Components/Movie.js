@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import moviePropTypes from '../Assets/Types';
+import PropTypes from 'prop-types';
 import api from '../Assets/API';
 // component style
 import './CSS/Movie.scss';
@@ -32,6 +34,8 @@ class Movie extends Component {
         case '11': mth = 'NOV';
           break;
         case '12': mth = 'DEC';
+          break;
+        default: mth = 'Unknown';
       }
       return mth;
     };
@@ -41,31 +45,58 @@ class Movie extends Component {
     const date = `${month} ${day}`;
     return date;
   }
-  render() {
+  _getImage() {
+    let render;
+
     const isRetina = api.imgURL + api.p_retina + this.props.poster;
     const isDefault = api.imgURL + api.p_default + this.props.poster;
+
+    const image = (
+      <figure>
+        <picture>
+          <source media="(max-width: 768px)" srcSet={isRetina} />
+          <img src={isDefault} alt={this.props.title} />
+        </picture>
+      </figure>
+    );
+    const noImage = <div className="no-image"></div>;
+
+    this.props.poster !== null ? render = image : render = noImage;
+    // if (this.props.poster !== null) {
+    //   render = image;
+    // } else {
+    //   this.props.poster = 'no image';
+    //   render = noImage;
+    // }
+
+    return render;
+  }
+  render() {
     return (
       <li className="mv-list">
         <h2 className="mv-top-num"><span className="a11y-hidden">Top</span>{this.props.topN}</h2>
         <h3 className="mv-title">{this.props.title}</h3>
         <div className="mv-gui-wrapper">
-          <p className="mv-rating"> 
+          <p className="mv-rating">
             <span className="a11y-hidden">Average rating is</span>
             {this.props.vote}
           </p>
-          <figure className="mv-poster">
-            <picture>
-              <source media="(max-width: 768px)" srcSet={isRetina} />
-              <img src={isDefault} alt={this.props.title} />
-            </picture>
-          </figure>
+          <div className="mv-poster">{this._getImage()}</div>
         </div>
-        <p className="mv-release">Released 
+        <p className="mv-release">Released
           <time className="mv-release-date" dateTime={this.props.released}>{ this._releaseDate() }</time>
         </p>
       </li>
     );
   }
 }
+
+Movie.propTypes = {
+  topN: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
+  poster: PropTypes.string,
+  released: PropTypes.string.isRequired
+};
 
 export default Movie;
