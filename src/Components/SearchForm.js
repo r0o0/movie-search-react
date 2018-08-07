@@ -34,6 +34,7 @@ class SearchForm extends Component {
     this.onFormSubmit = this._onFormSubmit.bind(this);
     this.accessibilty = this._accessibilty.bind(this);
     this.ifIEorEdge = this._ifIEorEdge.bind(this);
+    this.initInput = this._initInput.bind(this);
   }
   _onFormSubmit(e) {
     // prevent form default action
@@ -50,6 +51,10 @@ class SearchForm extends Component {
   _initInput() {
     el('#mvs').value = '';
     el('#mvs').blur();
+    
+    if (this._ifIEorEdge() === 'ie' || this._ifIEorEdge() === 'edge') {
+      el('#form-search').style.borderColor = '#eee';
+    }
   }
   _accessibilty(e) {
     // blur btn search if user press enter when button is focused
@@ -61,11 +66,11 @@ class SearchForm extends Component {
       if (e.keyCode === 27) {
         this._initInput();
         
-        // if browser is ie or edge remove focus style
-        const ifIEorEdge = el('#form-search').classList.value.indexOf('focus-within')
-        if (ifIEorEdge === 0 || ifIEorEdge === 5) {
-          removeClass('#form-search', 'focus-within');
+        if (this._ifIEorEdge() === 'ie' || this._ifIEorEdge() === 'edge') {
+          el('#form-search').style.borderColor = '#eee';
         }
+        
+        // if browser is ie or edge remove focus style
       }
     }
   }
@@ -73,8 +78,9 @@ class SearchForm extends Component {
   _ifIEorEdge() {
     const isBrowser = browser().name;
     if (isBrowser === 'ie' || isBrowser === 'edge') {
-      addClass('#form-search', 'focus-within');
+      el('#form-search').style.borderColor = '#000';
     }
+    return isBrowser;
   }
   render() {
     // Get current language
@@ -90,7 +96,7 @@ class SearchForm extends Component {
 
     return (
       <form id="form-search" onSubmit={this.onFormSubmit} onKeyDown={this.accessibilty}> 
-        <input className="input-search" type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name} onFocus={this.ifIEorEdge}/> 
+        <input className="input-search" type="text" id="mvs" autoComplete="off" placeholder={content.placeholder} aria-label={content.name} onFocus={this.ifIEorEdge} onBlur={this.initInput} /> 
         <button className="btn-search" type="submit" id="send" onKeyDown={this.accessibilty} >
           <span className="a11y-hidden">{content.button}</span>
           <IconSearch />
