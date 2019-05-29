@@ -5,7 +5,7 @@ const key = process.env.REACT_APP_TMDb_API_KEY;
 fetch(`//api.themoviedb.org/3/configuration?api_key=${key}`)
   .then(res => res.json())
   .then(data => {
-    console.log(data.images.poster_sizes);
+    // console.log(data.images.poster_sizes);
     tmdb.imgURL = data.images.secure_base_url;
     tmdb.posterSizes = data.images.poster_sizes;
     tmdb.p_retina = tmdb.posterSizes[5];

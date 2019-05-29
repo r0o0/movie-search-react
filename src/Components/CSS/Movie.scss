@@ -72,19 +72,7 @@
       @include order($order: 1);
       margin: (34px / 2);
       width: calc(100% - 34px);
-      height: calc(100vw + 34px);
-      @media screen and (min-width: 480px) {
-        height: calc(100vw / 2 + 34px);
-      }
-      @media screen and (min-width: 600px) {
-        height: calc(100vw / 3 + 34px);
-      }
-      @media screen and (min-width: 720px) {
-        height: calc(100vw / 4 + 34px);
-      }
-      @media screen and (min-width: 1024px) {
-        height: calc(100vw / 4);
-      }
+      height: inherit;
       picture {
         display: block;
         width: 100%;
