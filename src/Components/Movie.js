@@ -59,7 +59,7 @@ class Movie extends Component {
         </picture>
       </figure>
     );
-    const noImage = <div className="no-image"></div>;
+    const noImage = <div className="no-image">No Image</div>;
 
     this.props.poster !== null ? render = image : render = noImage;
     // if (this.props.poster !== null) {
